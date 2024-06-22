@@ -8,6 +8,7 @@ use App\Models\Curso;
 
 class CursoController extends Controller
 {
+
     public function index(){
         $rows = Curso::all();
         return view('admin.cursos.index', compact('rows'));
@@ -63,5 +64,5 @@ class CursoController extends Controller
     public function excluir($id) {  
         Curso::find($id)->delete();
         return redirect()->route('admin.cursos');
-    }
+    } 
 }
