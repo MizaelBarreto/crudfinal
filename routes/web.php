@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::group(['middleware'=> 'auth'], function () {
 Route::get( '/',['as'=>'admin.cursos',
 'uses'=>'App\Http\Controllers\Admin\CursoController@index']);
 
@@ -24,3 +24,13 @@ Route::put('admin/cursos/atualizar/{id}',['as'=>'admin.cursos.atualizar',
 
 Route::get('admin/cursos/excluir/{id}',['as'=>'admin.cursos.excluir',
 'uses'=>'App\Http\Controllers\Admin\CursoController@excluir']);
+});
+
+Route::get('/',['as'=>'site.home','uses'=>'App\Http\Controllers\Site\HomeController@index']);
+
+//Login
+Route::get('/login', ['as' => 'login','uses'=>'App\Http\Controllers\Site\LoginController@index']);
+
+Route::post('/login/entrar',['as'=>'login.entrar','uses'=>'App\Http\Controllers\Site\LoginController@entrar']);
+
+Route::get('/login/sair',['as'=>'login.sair','uses'=>'App\Http\Controllers\Site\LoginController@sair']);
